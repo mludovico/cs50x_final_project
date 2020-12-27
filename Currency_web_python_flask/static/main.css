@@ -1,0 +1,30 @@
+h1 {
+  margin-bottom: 2em !important;
+  margin-top: 1em !important;
+}
+
+.updated-container {
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  font-size: .7em;
+}
+
+.updated-container .first {
+  min-width: 50;
+}
+
+.updated-container .second {
+  min-width: 150;
+}
+
+#update-btn {
+  font-weight: bolder;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
