@@ -1,5 +1,8 @@
 import os
+from decimalEncoder import DecimalEncoder
+import json
 from datetime import datetime
+from decimal import Decimal
 from time import time
 from flask import Flask, jsonify, redirect, render_template, request
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
@@ -48,9 +51,12 @@ def index():
 
 def calculate(value, source):
   data = {}
-  data["USD"] = float(value) / rates[source]
+  data["USD"] = Decimal(value) / Decimal(rates[source])
   for key in rates.keys():
-    data[key] = data["USD"] * float(rates[key])
+    if key == source:
+      data[key] = Decimal(value)
+    else:
+      data[key] = Decimal(data["USD"]) * Decimal(rates[key])
   return data
 
 @app.route("/getExchangeRate", methods=["GET", "POST"])
@@ -61,7 +67,7 @@ def fromUsd():
   if not request.form.get("value"):
     errors.append("Missing value parameter")
   try:
-    float(request.form.get("value"))
+    Decimal(request.form.get("value"))
   except:
     errors.append("Invalid value parameter")
   if not request.form.get("source"):
@@ -74,7 +80,7 @@ def fromUsd():
   source = request.form.get("source")
   data = calculate(value, source)
   data["updated"] = updated
-  return jsonify(data)
+  return json.dumps(data, cls=DecimalEncoder)
 
 def update():
   baseUrl = "https://api.exchangerate.host/latest"
