@@ -21,9 +21,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="number|numberDecimal"
             android:hint="0.00"
             android:id="@+id/usdTextInput"
+            android:tag="USD"
+            app:endIconMode="clear_text"
         />
     </LinearLayout>
 
@@ -42,9 +44,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="number|numberDecimal"
             android:hint="0.00"
             android:id="@+id/eurTextInput"
+            android:tag="EUR"
         />
     </LinearLayout>
 
@@ -63,9 +66,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="number|numberDecimal"
             android:hint="0.00"
             android:id="@+id/gbpTextInput"
+            android:tag="GBP"
         />
     </LinearLayout>
 
@@ -84,9 +88,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="number|numberDecimal"
             android:hint="0.00"
             android:id="@+id/brlTextInput"
+            android:tag="BRL"
         />
     </LinearLayout>
 
@@ -105,28 +110,46 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="number|numberDecimal"
             android:hint="0.00"
             android:id="@+id/btcTextInput"
+            android:tag="BTC"
         />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btcContainer"
-    >
+        android:layout_height="56dp"
+        android:layout_below="@id/btcContainer">
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="47dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center|center_vertical"
+            android:text="\u27f3"
+            android:textSize="20dp"
+            android:textFontWeight="900"
+            android:onClick="loadRates"/>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Updated:"
-        />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/updatedLabel"
-        />
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/updateButton"
+            android:gravity="start|center_vertical"
+            android:layout_toRightOf="@+id/updateFirstChild"
+            android:paddingLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/updateFirstChild"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="start|center_vertical"
+            android:text="Updated:" />
+    </RelativeLayout>
 
 
 </RelativeLayout>
