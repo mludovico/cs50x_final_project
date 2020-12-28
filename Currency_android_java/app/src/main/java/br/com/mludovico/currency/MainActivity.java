@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("cs50", "Pokemon list error", error);
+                Log.e("Currency", "Rates request error", error);
             }
         });
 
@@ -111,15 +111,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTextFields(HashMap<String, Double> data) {
         if(!usdField.hasFocus())
-            usdField.setText(String.format("0.2f", data.get("USD").toString()));
+            usdField.setText(String.format("%.2f", data.get("USD")));
         if(!eurField.hasFocus())
-            eurField.setText(data.get("EUR").toString());
+            eurField.setText(String.format("%.2f", data.get("EUR")));
         if(!gbpField.hasFocus())
-            gbpField.setText(data.get("GBP").toString());
+            gbpField.setText(String.format("%.2f", data.get("GBP")));
         if(!brlField.hasFocus())
-            brlField.setText(data.get("BRL").toString());
+            brlField.setText(String.format("%.2f", data.get("BRL")));
         if(!btcField.hasFocus())
-            btcField.setText(data.get("BTC").toString());
+            btcField.setText(String.format("%.6f", data.get("BTC")));
     }
 
     void getExchange(View v){
